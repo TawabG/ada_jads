@@ -26,8 +26,9 @@ class Cart:
 		# compare cart_user_id in database with cart_user_id of json body
 		cart = session.query(CartDAO).filter(CartDAO.cart_user_id == cart_user_id).all()
 
-		# check if cart_user_id exists
+		# check if cart_user_id exists (thus if an item is in the cart)
 		if cart:
+			# if so, return all items in cart
 			list_return = [] 
 			for item in session.query(CartDAO).filter(CartDAO.cart_user_id == cart_user_id).all():
 				dictret = dict(item.__dict__)
