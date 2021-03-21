@@ -17,3 +17,5 @@ class recommenderDAO(Base):
     title = Column(String)
     vote_average = Column(Float)
     vote_count = Column(Integer)
+
+#TODO upload data into DAO

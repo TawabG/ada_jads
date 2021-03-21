@@ -22,6 +22,9 @@ class Account:
         #Use Jsonify to return json object with status code when API is called.
         return jsonify({'customer_id': account.id}), 200
 
+    def get_recommendation:
+        session = Session()
+
 
     @staticmethod
     def get_account(a_email):
