@@ -1,6 +1,6 @@
 from flask import Flask, request
 from db import Base, engine
-from CartService.resources.cart import Cart
+from resources.cart import Cart
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
