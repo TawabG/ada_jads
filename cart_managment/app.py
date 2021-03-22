@@ -2,7 +2,6 @@ from flask import Flask, request
 
 from db import Base, engine
 from resources.cart import Cart
-from resources.status import Status
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -18,6 +17,12 @@ def create_cart():
 @app.route('/cart/<c_id>', methods=['GET'])
 def get_cart(c_id):
     return Cart.get(c_id)
+
+
+@app.route('/cart/<c_id>/<quantity>', methods=['PUT'])
+def update_cart(c_id, quantity):
+    quantity_update = request.args.get('quantity_update')
+    return Cart.update(c_id, quantity)
 
 
 @app.route('/cart/<c_id>', methods=['DELETE'])
