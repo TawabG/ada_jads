@@ -9,7 +9,16 @@ class Cart:
 	@staticmethod
 	def create(body):
 		session = Session()
-		cart = CartDAO(body['cart_user_id'], body['product_id'], body['product_name'], body['product_price'], 'static short description', '/product/path', 'path/to/img', body['amount'])
+		cart = CartDAO(
+			body['cart_user_id'], 
+			body['product_id'], 
+			body['product_name'], 
+			body['product_quantity'], 
+			body['product_price'], 
+			'static short description', 
+			'/product/path', 
+			'path/to/img'
+			)
  
 		session.add(cart)
 		session.commit()
@@ -44,3 +53,35 @@ class Cart:
 		else:
 			session.close()
 			return jsonify({'Message': "Empty cart"}), 404
+
+
+
+	@staticmethod
+	def update(cart_user_id, product_id, quantity):
+		session = Session()
+		cart = session.query(CartDAO).filter(CartDAO.cart_user_id == cart_user_id).first()
+		if cart:
+			product_exist = session.query(CartDAO).filter(CartDAO.product_id == product_id).first()
+			# check if product exists
+			if product_exist:
+				product_exist.product_quantity = quantity
+				session.commit()
+				return jsonify({'message': 'The cart product quantity is updated'}), 200
+			else:
+				session.close()
+				return jsonify({'message': 'This product is not in the cart!'}), 404
+		else:
+			session.close()
+			return jsonify({'message': 'You cannot update an non-existing cart!'}), 404
+		
+
+	@staticmethod
+	def delete(cart_user_id):
+		session = Session()
+		effected_rows = session.query(CartDAO).filter(CartDAO.cart_user_id == cart_user_id).delete()
+		session.commit()
+		session.close()
+		if effected_rows == 0:
+		    return jsonify({'message': f'There is no cart with a cart id {cart_user_id}'}), 404
+		else:
+		    return jsonify({'message': 'The cart is removed'}), 200
