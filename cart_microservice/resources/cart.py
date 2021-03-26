@@ -60,8 +60,10 @@ class Cart:
 	def update(cart_user_id, product_id, quantity):
 		session = Session()
 		cart = session.query(CartDAO).filter(CartDAO.cart_user_id == cart_user_id).first()
+		
 		if cart:
 			product_exist = session.query(CartDAO).filter(CartDAO.product_id == product_id).first()
+
 			# check if product exists
 			if product_exist:
 				product_exist.product_quantity = quantity
