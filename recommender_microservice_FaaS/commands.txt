@@ -1,0 +1,27 @@
+- Install Google cloud SDK locally
+- a 'main.py' is required!
+- Project ID = {adv-data-architectures}
+- Create bucket in Google Cloud Platform: {ada-assignment}
+
+
+Commands:
+To deploy the function with an HTTP trigger, run the following command in the directory that contains the sample code:
+gcloud functions deploy {get_recommendation} --runtime python38 --trigger-http --allow-unauthenticated
+
+Running above command returns httpsTriger URL:
+E.g.: https://us-central1-adv-data-architectures.cloudfunctions.net/get_recommendation
+
+Then use postman to use "GET" request for:
+https://us-central1-adv-data-architectures.cloudfunctions.net/get_recommendation?movie_name=Toy Story
+
+This will return what is inside SimpleRecommender.recommend()
+
+
+
+Read more:
+
+HTTP Triggers: https://cloud.google.com/functions/docs/calling/http
+GCP Functions: https://cloud.google.com/functions/docs/writing/http#gcloud_1
+Example: https://cloud.google.com/functions/docs/tutorials/http
+
+
