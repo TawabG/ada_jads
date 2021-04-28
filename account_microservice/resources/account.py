@@ -1,8 +1,15 @@
 from datetime import datetime
 from flask import jsonify
-#from constant import STATUS_CREATED
+# from constant import STATUS_CREATED
 from daos.account_dao import AccountDAO
 from db import Session
+from datetime import datetime
+
+# from constant import STATUS_CREATED
+from daos.account_dao import AccountDAO
+from db import Session
+from flask import jsonify
+
 
 class Account:
 
@@ -22,39 +29,49 @@ class Account:
         #Use Jsonify to return json object with status code when API is called.
         return jsonify({'customer_id': account.id}), 200
 
-    # def get_recommendation:
-    #     session = Session()
-
-
     @staticmethod
-    def get_account(a_email):
+    def get_account(body):
         session = Session()
-        account = session.query(AccountDAO).filter(AccountDAO.customer_email == a_email).first()
+        account_email = body['customer_email']
+        account = session.query(AccountDAO).filter(AccountDAO.customer_email == account_email).first()
         if account:
             text_out = {
                 "customer_id": account.id,
                 "customer_name": account.customer_name,
                 "customer_address": account.customer_address,
                 "customer_email": account.customer_email,
-                #TODO maybe not return password if we get account haha.
-                "customer_password": account.customer_password,
                 "creation_time": account.creation_time
             }
             session.close()
             return jsonify(text_out), 200
         else:
             session.close()
-            return jsonify({'message':f'There is no account with e-mail {a_email}'}), 404
-
+            return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
 
     @staticmethod
-    #TODO Extend this so other attributes can be updated too
-    def update_account_name(a_id, a_name):
+    def update_account_name(a_id, body):
         session = Session()
         account = session.query(AccountDAO).filter(AccountDAO.id == a_id).first()
-        account.customer_name = a_name
-        session.commit()
-        return jsonify({'message': 'The account name was updated'}), 200
+        if account:
+            entities_updated = []
+            if 'customer_name' in body:
+                account.customer_name = body['customer_name']
+                entities_updated.append('customer_name, ')
+            if 'customer_address' in body:
+                account.customer_address = body['customer_address']
+                entities_updated.append('customer_address, ')
+            if 'customer_password' in body:
+                account.customer_password = body['customer_password']
+                entities_updated.append('customer_password, ')
+            if 'customer_email' in body:
+                account.customer_email = body['customer_email']
+                entities_updated.append('customer_email, ')
+            session.commit()
+            session.close()
+            return jsonify({'message': f'{" ".join(entities_updated)} were updated'}), 200
+        else:
+            session.close()
+            return jsonify({'message': f'There is no account with id {a_id}'}), 404
 
 
     @staticmethod
