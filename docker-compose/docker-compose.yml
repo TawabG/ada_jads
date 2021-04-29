@@ -24,7 +24,7 @@ services:
     #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/delivery
     # depends_on:
     #   - pgdb_server
-    # ports:
+    ports:
       - "5000:5000"
   cart_service:
     build:
