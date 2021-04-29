@@ -1,9 +1,3 @@
-<<<<<<< Updated upstream
-# %%
-=======
-from flask import jsonify
-from db import Session
->>>>>>> Stashed changes
 from daos.product_dao import ProductDAO
 from db import Session
 from flask import jsonify
@@ -62,7 +56,7 @@ class Product:
                 "product_quantity: ": product.product_quantity,
                 "unit_price: ": product.unit_price
             }
-            session.clsoe()
+            session.close()
             return jsonify(text_out), 200
         else:
             session.close()
@@ -75,6 +69,7 @@ class Product:
         product.product_quantity = quantity
         product.unit_price = unit_price
         session.commit()
+        session.refresh(product)
         return jsonify({'message': 'The product inventory quantity and/or unit price is updated'}), 200
 
     @staticmethod
