@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 # %%
+=======
+from flask import jsonify
+from db import Session
+>>>>>>> Stashed changes
 from daos.product_dao import ProductDAO
 from db import Session
 from flask import jsonify
@@ -9,8 +14,7 @@ class Product:
     @staticmethod
     def create(body):
         session = Session()
-        product = ProductDAO(body['id'],
-                             body['title'],
+        product = ProductDAO(body['title'],
                              body['overview'],
                              body['release_date'],
                              body['runtime'],
@@ -53,7 +57,7 @@ class Product:
 
         if product:
             text_out = {
-                "product_id: ": product.id,
+                "product_id: ": p_id,
                 "product_name: ": product.title,
                 "product_quantity: ": product.product_quantity,
                 "unit_price: ": product.unit_price
@@ -83,7 +87,3 @@ class Product:
             return jsonify({'message': f'There is no product to delete with id {p_id}'}), 404
         else:
             return jsonify({'message': 'The product is removed from db'}), 200
-
-
-
-
