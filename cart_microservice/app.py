@@ -17,9 +17,6 @@ def add_to_cart():
 def get_cart_item(cart_user_id):
 	return Cart.get(cart_user_id)
 
-
-
-
 @app.route('/cart/<cart_user_id>/<product_id>/<quantity>', methods=['PUT'])
 def update(cart_user_id, product_id, quantity):
 	# product_quantity = request.args.get('product_quantity')
