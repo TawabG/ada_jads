@@ -1,9 +1,8 @@
-#%%
-from datetime import datetime
-from flask import jsonify
-from db import Session
+# %%
 from daos.product_dao import ProductDAO
-from sqlalchemy.sql import text
+from db import Session
+from flask import jsonify
+
 
 class Product:
 
@@ -36,13 +35,16 @@ class Product:
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
 
         recommender_data = session.execute('SELECT title, overview FROM products')
-        data_list = []
-        for title, review in recommender_data:
-            data_dict = {'title': title, 'review': review}
-            print(review)
-            data_list.append(data_dict)
+        data_dict = {}
+        title_list = []
+        overview_list = []
+        for title, overview in recommender_data:
+            title_list.append(title)
+            overview_list.append(overview)
+        data_dict['titles'] = title_list
+        data_dict['overviews'] = overview_list
         session.close()
-        return jsonify(data_list), 200
+        return jsonify(data_dict), 200
 
     @staticmethod
     def get(p_id):
