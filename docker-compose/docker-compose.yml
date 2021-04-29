@@ -1,0 +1,58 @@
+version: '3.9'
+services:
+  # pgdb_server:
+  #   image: postgres:13.2
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=testuser
+  #     - POSTGRES_PASSWORD=testpass
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     # CHANGE DIRECTORY!!
+  #     - /home/t_ghorbandi/postgres_data:/var/lib/postgresql/data
+  # db_admin:
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  account_service:
+    build:
+      context: ./../account_microservice
+    # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
+    # environment:
+    #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/delivery
+    # depends_on:
+    #   - pgdb_server
+    # ports:
+      - "5000:5000"
+  cart_service:
+    build:
+      context: ./../cart_microservice
+    # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
+    # environment:
+    #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place
+    # depends_on:
+    #   - pgdb_server
+    ports:
+      - "5001:5000"
+  product_service:
+    build:
+      context: ./../product_microservice
+    # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
+    # environment:
+    #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place
+    # depends_on:
+    #   - pgdb_server
+    ports:
+      - "5002:5000"
+  recommender_service:
+    build:
+      context: ./../recommender_microservice
+    # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
+    # environment:
+    #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place
+    # depends_on:
+    #   - pgdb_server
+    ports:
+      - "5003:5000"
