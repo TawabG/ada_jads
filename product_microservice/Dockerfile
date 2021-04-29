@@ -14,3 +14,5 @@ EXPOSE 5000
 ENV db_url = 'sqlite:///product.db'
 # Run our App
 CMD ["python3","app.py"]
+# Run our App
+CMD ["python3","populate_database.py"]
