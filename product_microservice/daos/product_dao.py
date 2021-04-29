@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float, Boolean
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Float, Boolean, Numeric
 from sqlalchemy.orm import relationship, backref
 from db import Base
 
@@ -14,9 +14,10 @@ class ProductDAO(Base):
     revenue = Column(Float)
     runtime = Column(Integer)
     title = Column(String) #Essential for recommender
-    #TODO Add other relevant fields for our products.
+    product_quantity = Column(String)
+    unit_price = Column(Numeric)
 
-    def __init__(self, adult, budget, original_language, overview, release_date, revenue, runtime, title):
+    def __init__(self, adult, budget, original_language, overview, release_date, revenue, runtime, title, product_quantity, unit_price):
         self.adult = adult
         self.budget = budget
         self.original_language = original_language
@@ -25,7 +26,8 @@ class ProductDAO(Base):
         self.revenue = revenue
         self.runtime = runtime
         self.title = title
-
+        self.product_quantity = product_quantity
+        self.unit_price = unit_price
 
 
 
