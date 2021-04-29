@@ -4,8 +4,7 @@ import pandas as pd
 from daos.product_dao import ProductDAO
 from db import Session, engine, Base
 
-df = pd.read_csv(
-    'C:/Users/Yme/MEGA/Master DSE/Semester 4/Advanced Data Architectures/ada_jads/recommender_microservice/data/movies_metadata.csv')
+df = pd.read_csv('../recommender_microservice/data/movies_metadata.csv')
 
 # TODO make sure release_date is right type
 df_sub = df[['adult', 'budget', 'original_language', 'overview', 'release_date', 'revenue', 'runtime', 'title']].copy()
