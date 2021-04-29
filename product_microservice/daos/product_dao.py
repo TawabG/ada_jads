@@ -17,8 +17,8 @@ class ProductDAO(Base):
     # product_quantity = Column(String)
     # unit_price = Column(Numeric)
 
-    def __init__(self, adult, budget, original_language, overview, release_date, revenue, runtime, title,
-                 product_quantity, unit_price):
+    def __init__(self, adult, budget, original_language, overview, release_date, revenue, runtime, title):
+        # product_quantity, unit_price
         self.adult = adult
         self.budget = budget
         self.original_language = original_language
