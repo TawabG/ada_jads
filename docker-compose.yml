@@ -22,7 +22,7 @@ services:
     volumes:
       - ./krakend:/etc/krakend/
     ports:
-      - "8080:8081"
+      - "8081:8081"
   account_service:
     build:
       # CHECK THESE PATHS! MAYBE: ./account_microservice
