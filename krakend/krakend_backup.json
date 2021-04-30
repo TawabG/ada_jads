@@ -17,6 +17,15 @@
             "http://account_microservice_ct_name:5000/"
           ],
           "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/cart/get_cart_items",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://cart_microservice_ct_name:5000/"
+          ],
+          "disable_host_sanitize": false
         }
       ]
     }
