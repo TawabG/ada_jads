@@ -18,7 +18,7 @@ services:
   #     - "8080:8080"
   account_service:
     build:
-      context: ./../account_microservice
+      context: account_microservice
     # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
     # environment:
     #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/delivery
@@ -28,7 +28,7 @@ services:
       - "5000:5000"
   cart_service:
     build:
-      context: ./../cart_microservice
+      context: cart_microservice
     # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
     # environment:
     #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place
@@ -38,7 +38,7 @@ services:
       - "5001:5000"
   product_service:
     build:
-      context: ./../product_microservice
+      context: product_microservice
     # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
     # environment:
     #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place
@@ -48,7 +48,7 @@ services:
       - "5002:5000"
   recommender_service:
     build:
-      context: ./../recommender_microservice
+      context: recommender_microservice
     # IF WE WANT TO USE DATBASE WITH COMPOSERS UNCOMMENT BELOW!!!
     # environment:
     #   - DB_URL=postgresql://testuser:testpass@pgdb_server:5432/place

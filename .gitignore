@@ -1,0 +1,16 @@
+account_microservice/__pycache__/
+account_microservice/daos/__pycache__/
+account_microservice/resources/__pycache__/
+cart_microservice/__pycache__/
+cart_microservice/daos/__pycache__/
+cart_microservice/resources/__pycache__/
+product_microservice/__pycache__/
+product_microservice/daos/__pycache__/
+product_microservice/resources/__pycache__/
+account_microservice/.idea/
+cart_microservice/.idea/
+product_microservice/.idea/
+recommender_microservice/.idea/
+recommender_microservice_FaaS/.idea/
+
+
