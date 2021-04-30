@@ -4,10 +4,10 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 #%%Resize df
-metadata = pd.read_csv('data/movies_metadata_full.csv')
+metadata = pd.read_csv('../product_microservice/data/movies_metadata_full.csv')
 meta_data_sub = metadata[:201]
 meta_data_sub.to_csv('data/movies_metadata.csv')
-metadata_sub_reload = pd.read_csv('data/movies_metadata.csv')
+metadata_sub_reload = pd.read_csv('../product_microservice/data/movies_metadata.csv')
 
 #%%
 tfidf = TfidfVectorizer(stop_words='english')

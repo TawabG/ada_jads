@@ -22,6 +22,8 @@ class SimpleRecommender:
 
         api_call = requests.get('http://localhost:5000/products/get_recommender_data')
         api_call_decoded = api_call.json()
+
+        #
         titles = api_call_decoded['titles']
         overviews = api_call_decoded['overviews']
         movie_df = pd.DataFrame(columns=['titles', 'overviews'])

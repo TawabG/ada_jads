@@ -1,10 +1,12 @@
 # %%
+import random
+
 import pandas as pd
 
 from daos.product_dao import ProductDAO
 from db import Session, engine, Base
 
-df = pd.read_csv('../recommender_microservice/data/movies_metadata.csv')
+df = pd.read_csv('data/movies_metadata.csv')
 
 # TODO make sure release_date is right type
 df_sub = df[['adult', 'budget', 'original_language', 'overview', 'release_date', 'revenue', 'runtime', 'title']].copy()
@@ -24,10 +26,14 @@ for index, row in df_sub.iterrows():
     revenue = row['revenue']
     runtime = row['runtime']
     title = row['title']
-    population_objects = ProductDAO(adult=adult, budget=budget, original_language=orlang, overview=overview, release_date=reldate, revenue=revenue, runtime=runtime, title=title)
+    product_quantity = random.randint(1000, 5000)
+    unit_price = random.randint(100, 500) / 100
+    population_objects = ProductDAO(adult=adult, budget=budget, original_language=orlang,
+                                    overview=overview, release_date=reldate, revenue=revenue,
+                                    runtime=runtime, title=title,
+                                    product_quantity=product_quantity, unit_price=unit_price)
     session.add(population_objects)
     # # 10 - commit and close session
-
 
 
 session.commit()
