@@ -29,28 +29,32 @@ class Cart:
 
 	@staticmethod
 	def get(user_id):
-		session = Session()
-		# compare cart_user_id in database with cart_user_id of json body
-		cart = session.query(CartDAO).filter(CartDAO.user_id == user_id).all()
 
-		# check if cart_user_id exists (thus if an item is in the cart)
-		if cart:
-			# if so, return all items in cart
-			list_return = []
-			for item in session.query(CartDAO).filter(CartDAO.user_id == user_id).all():
-				dictret = dict(item.__dict__)
-				dictret.pop('_sa_instance_state', None)
-				list_return.append(dictret)
+		return jsonify({'test': f'user_id {user_id}'}), 200
+		# session = Session()
+		# # compare cart_user_id in database with cart_user_id of json body
+		# cart = session.query(CartDAO).filter(CartDAO.user_id == user_id).all()
 
-			# print(list_return)
-			result = json.dumps(list_return)
-			# print(result)
+		# # check if cart_user_id exists (thus if an item is in the cart)
+		# if cart:
+		# 	# if so, return all items in cart
+		# 	list_return = []
+		# 	for item in session.query(CartDAO).filter(CartDAO.user_id == user_id).all():
+		# 		dictret = dict(item.__dict__)
+		# 		dictret.pop('_sa_instance_state', None)
+		# 		list_return.append(dictret)
 
-			session.close()
-			return result, 200
-		else:
-			session.close()
-			return jsonify({'Message': "Empty cart"}), 404
+		# 	# print(list_return)
+		# 	result = json.dumps(list_return)
+		# 	# print(result)
+
+		# 	session.close()
+		# 	return result, 200
+		# else:
+		# 	session.close()
+		# 	return jsonify({'Message': "Empty cart"}), 404
+
+
 
 	@staticmethod
 	def update(user_id, req_data):
