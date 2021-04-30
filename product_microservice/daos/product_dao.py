@@ -13,7 +13,7 @@ class ProductDAO(Base):
     budget = Column(Integer)
     revenue = Column(Float)
     product_quantity = Column(Integer)
-    unit_price = Column(String)
+    unit_price = Column(Float)
 
     def __init__(self, title, overview, release_date, runtime, adult, original_language,
                  budget, revenue, product_quantity, unit_price):

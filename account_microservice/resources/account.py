@@ -1,8 +1,4 @@
-from datetime import datetime
-from flask import jsonify
 # from constant import STATUS_CREATED
-from daos.account_dao import AccountDAO
-from db import Session
 from datetime import datetime
 
 # from constant import STATUS_CREATED
@@ -49,7 +45,7 @@ class Account:
             return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
 
     @staticmethod
-    def update_account_name(a_id, body):
+    def update_account(a_id, body):
         session = Session()
         account = session.query(AccountDAO).filter(AccountDAO.id == a_id).first()
         if account:

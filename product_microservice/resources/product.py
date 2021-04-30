@@ -6,26 +6,6 @@ from flask import jsonify
 class Product:
 
     @staticmethod
-    def create(body):
-        session = Session()
-        product = ProductDAO(body['title'],
-                             body['overview'],
-                             body['release_date'],
-                             body['runtime'],
-                             body['adult'],
-                             body['original_language'],
-                             body['budget'],
-                             body['revenue'],
-                             body['product_quantity'],
-                             body['unit_price']
-                             )
-        session.add(product)
-        session.commit()
-        session.refresh(product)
-        session.close()
-        return jsonify({'product_id': product.id}), 200
-
-    @staticmethod
     def get_recommendation_data():
         # TODO Implement failure if database is empty or does not exist
         session = Session()
@@ -48,7 +28,6 @@ class Product:
     def get(p_id):
         session = Session()
         product = session.query(ProductDAO).filter(ProductDAO.id == p_id).first()
-
         if product:
             text_out = {
                 "product_id: ": p_id,
@@ -63,14 +42,42 @@ class Product:
             return jsonify({'message': f'Could not get a product with id {p_id}'}), 404
 
     @staticmethod
-    def update(p_id, quantity, unit_price):
+    def register_product(body):
         session = Session()
-        product = session.query(ProductDAO).filter(ProductDAO.id == p_id).first()
-        product.product_quantity = quantity
-        product.unit_price = unit_price
+        product = ProductDAO(body['title'],
+                             body['overview'],
+                             body['release_date'],
+                             body['runtime'],
+                             body['adult'],
+                             body['original_language'],
+                             body['budget'],
+                             body['revenue'],
+                             body['product_quantity'],
+                             body['unit_price']
+                             )
+        session.add(product)
         session.commit()
         session.refresh(product)
-        return jsonify({'message': 'The product inventory quantity and/or unit price is updated'}), 200
+        session.close()
+        return jsonify({'product_id': product.id}), 200
+
+    @staticmethod
+    def update_quantity_price(p_id, req_data):
+        session = Session()
+        product = session.query(ProductDAO).filter(ProductDAO.id == p_id).first()
+        if product:
+            entities_updated = []
+            if 'quantity' in req_data:
+                product.product_quantity = req_data['quantity']
+                entities_updated.append('quantity, ')
+            if 'unit_price' in req_data:
+                product.unit_price = req_data['unit_price']
+                entities_updated.append('unit_price, ')
+            session.commit()
+            session.refresh(product)
+            return jsonify({'message': f'{" ".join(entities_updated)} were updated'}), 200
+        else:
+            return jsonify({'message': f'There is no product with id {p_id}'}), 404
 
     @staticmethod
     def delete(p_id):
