@@ -10,7 +10,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/accounts/get_account",
+          "url_pattern": "/accounts/get_account?user_id={user_id}",
           "encoding": "json",
           "method": "GET",
           "host": [
