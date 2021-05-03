@@ -51,7 +51,7 @@ class Account:
             return jsonify(text_out), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
+            return jsonify({'message': f'There is no account with e-mail {customer_email}'}), 404
 
     @staticmethod
     def update_account(a_id, body):
