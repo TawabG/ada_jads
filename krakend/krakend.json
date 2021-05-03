@@ -8,9 +8,12 @@
       "endpoint": "/insidecartofaccount",
       "method": "GET",
       "output_encoding": "json",
+      "querystring_params": [
+        "user_id"
+      ],
       "backend": [
         {
-          "url_pattern": "/accounts/get_account?user_id={user_id}",
+          "url_pattern": "/accounts/get_account",
           "encoding": "json",
           "method": "GET",
           "host": [
