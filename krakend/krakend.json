@@ -9,7 +9,8 @@
       "method": "GET",
       "output_encoding": "json",
       "querystring_params": [
-        "user_id"
+        "user_id",
+        "customer_email"
       ],
       "backend": [
         {
