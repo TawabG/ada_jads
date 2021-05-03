@@ -26,23 +26,29 @@ class Account:
         return jsonify({'customer_id': account.id}), 200
 
     @staticmethod
-    def get_account(body):
-        session = Session()
-        account_email = body['customer_email']
-        account = session.query(AccountDAO).filter(AccountDAO.customer_email == account_email).first()
-        if account:
-            text_out = {
-                "customer_id": account.id,
-                "customer_name": account.customer_name,
-                "customer_address": account.customer_address,
-                "customer_email": account.customer_email,
-                "creation_time": account.creation_time
-            }
-            session.close()
-            return jsonify(text_out), 200
+    def get_account(customer):
+        
+        if customer:
+            return jsonify({'test2': f'customer: {customer}'}), 200
         else:
-            session.close()
-            return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
+            return jsonify({'Error': 'No customer found'}), 404
+
+        # session = Session()
+        # account_email = body['customer_email']
+        # account = session.query(AccountDAO).filter(AccountDAO.customer_email == account_email).first()
+        # if account:
+        #     text_out = {
+        #         "customer_id": account.id,
+        #         "customer_name": account.customer_name,
+        #         "customer_address": account.customer_address,
+        #         "customer_email": account.customer_email,
+        #         "creation_time": account.creation_time
+        #     }
+        #     session.close()
+        #     return jsonify(text_out), 200
+        # else:
+        #     session.close()
+        #     return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
 
     @staticmethod
     def update_account(a_id, body):

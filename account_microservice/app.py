@@ -15,8 +15,9 @@ def create_account():
 
 @app.route('/accounts/get_account', methods=['GET'])
 def get_account():
-    body = request.get_json()
-    return Account.get_account(body)
+    #body = request.get_json()
+    customer = request.args.get('customer_email')
+    return Account.get_account(customer)
 
 
 @app.route('/accounts/update_account', methods=['PUT'])

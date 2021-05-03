@@ -30,7 +30,7 @@ class Cart:
 	@staticmethod
 	def get(user_id):
 
-		return jsonify({'test': f'user_id {user_id}'}), 200
+		return jsonify({'test1': f'user_id: {user_id}'}), 200
 		# session = Session()
 		# # compare cart_user_id in database with cart_user_id of json body
 		# cart = session.query(CartDAO).filter(CartDAO.user_id == user_id).all()
