@@ -22,14 +22,14 @@ def get_account():
 
 @app.route('/accounts/update_account', methods=['PUT'])
 def update_account():
-    account_id = request.args.get('account_id')
+    cust_id = request.args.get('customer_id')
     body = request.get_json()
-    return Account.update_account(account_id, body)
+    return Account.update_account(cust_id, body)
 
 
 @app.route('/accounts/delete_account', methods=['DELETE'])
 def delete_account():
-    account_id = request.args.get('account_id')
-    return Account.delete_account(account_id)
+    customer_id = request.args.get('customer_id')
+    return Account.delete_account(customer_id)
 
 app.run(host='0.0.0.0', port=5000)
