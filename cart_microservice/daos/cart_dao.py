@@ -1,9 +1,4 @@
-rom
-sqlalchemy
-import Column, String, Integer, Numeric
-
 # from daos.status_dao import StatusDAO
-from db import Base
 # from daos.status_dao import StatusDAO
 from db import Base
 from sqlalchemy import Column, String, Integer, Numeric
