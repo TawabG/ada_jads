@@ -11,6 +11,6 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
 # Environmental variables
-ENV db_url postgresql:///account.db
+ENV db_url postgresql:///product.db
 # Run our App
 CMD ["python3","app.py"]

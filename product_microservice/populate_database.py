@@ -17,6 +17,7 @@ Base.metadata.create_all(engine)
 # 3 - create a new session
 session = Session()
 
+# How to connect to existing database.
 for index, row in df_sub.iterrows():
     adult = row['adult']
     budget = row['budget']
