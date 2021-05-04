@@ -44,4 +44,4 @@ def delete_product():
     product_id = request.args.get('product_id')
     return Product.delete(product_id)
 
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5002)
