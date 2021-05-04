@@ -30,6 +30,6 @@ def populate_db():
                                         runtime=runtime, title=title,
                                         product_quantity=product_quantity, unit_price=unit_price)
         session.add(population_objects)
-    session.commit()
-    session.close()
+        session.commit()
+        session.close()
     print("Db Successfully populated")
