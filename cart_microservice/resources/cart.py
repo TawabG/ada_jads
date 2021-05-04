@@ -1,4 +1,4 @@
-# import json
+import json
 import simplejson as json
 from daos.cart_dao import CartDAO
 from db import Session
@@ -42,9 +42,7 @@ class Cart:
 				dictret.pop('_sa_instance_state', None)
 				list_return.append(dictret)
 
-			# print(list_return)
-			result = json.dumps(list_return)
-			# print(result)
+			result = json.dumps(list_return[0])
 
 			session.close()
 			return result, 200
