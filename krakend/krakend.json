@@ -18,7 +18,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://account_microservice_ct_name:5000/"
+            "http://account_microservice_ct:5000/"
           ],
           "disable_host_sanitize": false
         },
@@ -27,7 +27,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://cart_microservice_ct_name:5000/"
+            "http://cart_microservice_ct:5000/"
           ],
           "disable_host_sanitize": false
         }
