@@ -47,4 +47,4 @@ def delete_product():
 
 
 populate_db()
-app.run(host='0.0.0.0', port=5002)
+app.run(host='0.0.0.0', port=5000)
