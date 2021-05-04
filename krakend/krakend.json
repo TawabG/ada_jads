@@ -32,6 +32,22 @@
           "disable_host_sanitize": false
         }
       ]
+    },
+    {
+      "endpoint": "/insidecartofaccount",
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+        "github.com/devopsfaith/krakend-cel": [
+          {
+            "check_expr": "req_params.user_id.matches('test')"
+          }
+        ]
+      },
+      "host": [
+        "http://account_microservice_ct:5000/"
+      ],
+      "disable_host_sanitize": false
     }
   ]
 }
