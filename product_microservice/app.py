@@ -1,6 +1,7 @@
 from flask import Flask, request
 
 from db import Base, engine
+from populate_database import populate_db
 from resources.product import Product
 
 app = Flask(__name__)
@@ -44,5 +45,6 @@ def delete_product():
     product_id = request.args.get('product_id')
     return Product.delete(product_id)
 
+
+populate_db()
 app.run(host='0.0.0.0', port=5002)
-# Hoi
