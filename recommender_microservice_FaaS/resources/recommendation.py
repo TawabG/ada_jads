@@ -1,12 +1,11 @@
 import pandas as pd
-import requests
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import linear_kernel
 
 
 class SimpleRecommender:
 
-    def recommend(movie_name):
+    def recommend(movie_name, movie_titles, movie_overviews):
         # Make connection with google cloud bucket
         # project_id = 'adv-data-architectures'
         # bucket_name = 'ada-assignment'
@@ -20,12 +19,8 @@ class SimpleRecommender:
         # movie_df = pd.read_csv(temp_filename, error_bad_lines=False)
         # movie_df = pd.read_csv('data/movies_metadata.csv', error_bad_lines=False)
 
-        api_call = requests.get('http://localhost:5000/products/get_recommender_data')
-        api_call_decoded = api_call.json()
-
-        #
-        titles = api_call_decoded['titles']
-        overviews = api_call_decoded['overviews']
+        titles = movie_titles
+        overviews = movie_overviews
         movie_df = pd.DataFrame(columns=['titles', 'overviews'])
         movie_df['titles'] = titles
         movie_df['overviews'] = overviews

@@ -5,16 +5,25 @@
   "port": 8081,
   "endpoints": [
     {
-      "url_pattern": "/cart/add_to_cart",
-      "method": "POST",
-      "output_encoding": "json",
+      "url_pattern": "/recommender/{movie_name}",
+      "encoding": "json",
+      "method": "GET",
       "backend": [
         {
-          "url_pattern": "/cart/add_to_cart",
+          "url_pattern": "/product/get_recommendation_data",
           "encoding": "json",
-          "method": "POST",
+          "method": "GET",
           "host": [
-            "http://cart_microservice_ct:5000/"
+            "http://product_microservice_ct:500"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "get_recommendation/{movie_name}{resp1_overviews}{resp2_titles}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "https://us-central1-psychotechnogcp.cloudfunctions.net/"
           ],
           "disable_host_sanitize": false
         }
@@ -22,3 +31,5 @@
     }
   ]
 }
+
+
