@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "output_encoding": "json",
+  "name": "AggregateAccountCart",
+  "port": 8081,
+  "endpoints": [
+    {
+      "endpoint": "/insidecartofaccount",
+      "method": "GET",
+      "output_encoding": "json",
+      "querystring_params": [
+        "user_id",
+        "customer_email"
+      ],
+      "timeout": "200000ms",
+      "backend": [
+        {
+          "url_pattern": "/accounts/get_account",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://account_microservice_ct:5000/"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/cart/get_cart_items",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://cart_microservice_ct:5000/"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
+
+//    {
+//      "url_pattern": "/cart/add_to_cart",
+//      "method": "POST",
+//      "output_encoding": "json",
+//      "backend": [
+//        {
+//          "url_pattern": "/cart/add_to_cart",
+//          "encoding": "json",
+//          "method": "POST",
+//          "host": [
+//            "http://cart_microservice_ct:5000/"
+//          ],
+//          "disable_host_sanitize": false
+//        }
+//      ]
+//    },

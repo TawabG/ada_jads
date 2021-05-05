@@ -26,10 +26,19 @@ class Account:
         return jsonify({'customer_id': account.id}), 200
 
     @staticmethod
-    def get_account(body):
+    def get_account(customer_email):
+
         session = Session()
-        account_email = body['customer_email']
-        account = session.query(AccountDAO).filter(AccountDAO.customer_email == account_email).first()
+        account = session.query(AccountDAO).filter(AccountDAO.customer_email == customer_email).first()
+
+        # if customer:
+        #     return jsonify({'test2': f'customer: {customer_email}'}), 200
+        # else:
+        #     return jsonify({'Error': 'No customer found'}), 404
+
+        # session = Session()
+        # account_email = body['customer_email']
+        # account = session.query(AccountDAO).filter(AccountDAO.customer_email == account_email).first()
         if account:
             text_out = {
                 "customer_id": account.id,
@@ -42,12 +51,12 @@ class Account:
             return jsonify(text_out), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no account with e-mail {account_email}'}), 404
+            return jsonify({'message': f'There is no account with e-mail {customer_email}'}), 404
 
     @staticmethod
-    def update_account(a_id, body):
+    def update_account(customer_id, body):
         session = Session()
-        account = session.query(AccountDAO).filter(AccountDAO.id == a_id).first()
+        account = session.query(AccountDAO).filter(AccountDAO.id == customer_id).first()
         if account:
             entities_updated = []
             if 'customer_name' in body:
@@ -67,16 +76,15 @@ class Account:
             return jsonify({'message': f'{" ".join(entities_updated)} were updated'}), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no account with id {a_id}'}), 404
-
+            return jsonify({'message': f'There is no account with id {customer_id}'}), 404
 
     @staticmethod
-    def delete_account(a_id):
+    def delete_account(customer_id):
         session = Session()
-        effected_row = session.query(AccountDAO).filter(AccountDAO.id == a_id).delete()
+        effected_row = session.query(AccountDAO).filter(AccountDAO.id == customer_id).delete()
         session.commit()
         session.close()
         if effected_row == 0:
-            return jsonify({'message': f'There is no account with id {a_id}'}), 404
+            return jsonify({'message': f'There is no account with id {customer_id}'}), 404
         else:
             return jsonify({'message': 'The account was removed'}), 200

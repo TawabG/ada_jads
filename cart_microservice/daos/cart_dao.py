@@ -1,7 +1,5 @@
-# from daos.status_dao import StatusDAO
-# from daos.status_dao import StatusDAO
 from db import Base
-from sqlalchemy import Column, String, Integer, Numeric
+from sqlalchemy import Column, String, Integer, Numeric, Float, Boolean
 
 
 class CartDAO(Base):

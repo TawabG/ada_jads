@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Expose the port that our app runs in
 EXPOSE 5000
-# Environmental variables
-ENV db_url = 'sqlite:///product.db'
+# Enviroment Variables
+ENV DB_URL  sqlite:///product.db
 # Run our App
 CMD ["python3","app.py"]
