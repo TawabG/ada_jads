@@ -12,7 +12,6 @@
         "user_id",
         "customer_email"
       ],
-      "timeout": "200000ms",
       "backend": [
         {
           "url_pattern": "/accounts/get_account",
@@ -31,24 +30,30 @@
             "http://cart_microservice_ct:5000/"
           ],
           "disable_host_sanitize": false
-        },
+        }
+      ]
+    },
+    {
+      "endpoint": "/insidecartofaccount",
+      "method": "POST",
+      "output_encoding": "json",
+      "backend": [
         {
           "url_pattern": "/cart/add_to_cart",
-          "encoding": "json",
           "method": "POST",
-          "extra_config": {
-            "github.com/devopsfaith/krakend-cel": [
-              {
-                "check_expr": "req_params.user_id.matches('carttest')"
-              }
-            ]
-          },
           "host": [
             "http://cart_microservice_ct:5000/"
           ],
           "disable_host_sanitize": false
         }
-      ]
+      ],
+      "extra_config": {
+        "github.com/devopsfaith/krakend-cel": [
+          {
+            "check_expr": "req_params.user_id.matches('test')"
+          }
+        ]
+      }
     }
   ]
 }
