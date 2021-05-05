@@ -10,7 +10,6 @@ services:
       - "5432:5432"
     volumes:
       - /home/y_n_vdrlinden/postgres_data:/var/lib/postgresql/data
-      - /home/t_ghorbandi/postgres_data:/var/lib/postgresql/data
   db_admin:
     image: adminer
     restart: always
