@@ -19,12 +19,12 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://product_microservice_ct:500"
+            "http://product_microservice_ct:5002"
           ],
           "disable_host_sanitize": false
         },
         {
-          "url_pattern": "get_recommendation/{movie_name}{resp0_overviews}{resp0_titles}",
+          "url_pattern": "get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
           "encoding": "json",
           "method": "GET",
           "host": [
