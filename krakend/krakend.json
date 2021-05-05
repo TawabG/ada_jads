@@ -6,12 +6,19 @@
   "endpoints": [
     {
       "url_pattern": "/cart/add_to_cart",
-      "encoding": "json",
       "method": "POST",
-      "host": [
-        "http://cart_microservice_ct:5000/"
-      ],
-      "disable_host_sanitize": false
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/cart/add_to_cart",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://cart_microservice_ct:5000/"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
     }
   ]
 }
