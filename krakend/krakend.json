@@ -61,7 +61,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "https://us-central1-psychotechnogcp.cloudfunctions.net/"
+            "https://us-central1-adv-data-architectures.cloudfunctions.net/get_recommendation"
           ],
           "disable_host_sanitize": false
         }
