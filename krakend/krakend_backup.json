@@ -51,15 +51,23 @@
           "url_pattern": "/products/get_recommender_data",
           "encoding": "json",
           "method": "GET",
+          "is_collection": true,
           "host": [
             "http://product_microservice_ct:5000"
           ],
           "disable_host_sanitize": false
         },
         {
-          "url_pattern": "/get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
+          "url_pattern": "/get_recommendation",
           "encoding": "json",
-          "method": "GET",
+          "method": "POST",
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cel": [
+              {
+                "check_expr": "req_params.Movie_name.matches('test')"
+              }
+            ]
+          },
           "host": [
             "https://us-central1-adv-data-architectures.cloudfunctions.net/"
           ],
@@ -69,3 +77,5 @@
     }
   ]
 }
+
+
