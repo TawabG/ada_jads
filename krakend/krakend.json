@@ -37,6 +37,9 @@
     {
       "endpoint": "/recommender",
       "method": "GET",
+      "querystring_params": [
+        "movie_name"
+      ],
       "extra_config": {
         "github.com/devopsfaith/krakend/proxy": {
           "sequential": true
@@ -45,7 +48,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/product/get_recommender_data",
+          "url_pattern": "/products/get_recommender_data",
           "encoding": "json",
           "method": "GET",
           "host": [
