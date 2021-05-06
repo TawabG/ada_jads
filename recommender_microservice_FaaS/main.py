@@ -1,8 +1,11 @@
 from resources.recommendation import SimpleRecommender
 
 def get_recommendation(request):
+
     print(request.path)
-    from flask import abort
+    
+    from flask import abort, jsonify
+
     if request.method == 'POST':
         # Alternative method
         # request_args = request.args

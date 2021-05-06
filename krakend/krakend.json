@@ -51,6 +51,7 @@
           "url_pattern": "/products/get_recommender_data",
           "encoding": "json",
           "method": "GET",
+          "is_collection": true,
           "host": [
             "http://product_microservice_ct:5000"
           ],
@@ -63,7 +64,7 @@
           "extra_config": {
             "github.com/devopsfaith/krakend-cel": [
               {
-                "check_expr": "req_params.movie_name.matches('test')"
+                "check_expr": "req_params.Movie_name.matches('test')"
               }
             ]
           },
