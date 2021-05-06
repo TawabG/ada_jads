@@ -49,7 +49,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "http://product_microservice_ct:5002"
+            "http://product_microservice_ct:5000"
           ],
           "disable_host_sanitize": false
         },
