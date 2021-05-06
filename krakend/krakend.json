@@ -57,9 +57,16 @@
           "disable_host_sanitize": false
         },
         {
-          "url_pattern": "/get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
+          "url_pattern": "/get_recommendation",
           "encoding": "json",
-          "method": "GET",
+          "method": "POST",
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cel": [
+              {
+                "check_expr": "req_params.movie_name.matches('test')"
+              }
+            ]
+          },
           "host": [
             "https://us-central1-adv-data-architectures.cloudfunctions.net/"
           ],
@@ -69,3 +76,5 @@
     }
   ]
 }
+
+

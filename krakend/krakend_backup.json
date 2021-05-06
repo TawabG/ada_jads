@@ -37,6 +37,9 @@
     {
       "endpoint": "/recommender/{movie_name}",
       "method": "GET",
+      "querystring_params": [
+        "movie_name"
+      ],
       "extra_config": {
         "github.com/devopsfaith/krakend/proxy": {
           "sequential": true
@@ -45,7 +48,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/product/get_recommender_data",
+          "url_pattern": "/products/get_recommender_data",
           "encoding": "json",
           "method": "GET",
           "host": [
@@ -54,11 +57,11 @@
           "disable_host_sanitize": false
         },
         {
-          "url_pattern": "get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
+          "url_pattern": "/get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
           "encoding": "json",
           "method": "GET",
           "host": [
-            "https://us-central1-psychotechnogcp.cloudfunctions.net/"
+            "https://us-central1-adv-data-architectures.cloudfunctions.net/"
           ],
           "disable_host_sanitize": false
         }
