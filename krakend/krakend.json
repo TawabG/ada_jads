@@ -61,7 +61,7 @@
           "encoding": "json",
           "method": "GET",
           "host": [
-            "https://us-central1-adv-data-architectures.cloudfunctions.net/get_recommendation"
+            "https://us-central1-adv-data-architectures.cloudfunctions.net/"
           ],
           "disable_host_sanitize": false
         }
