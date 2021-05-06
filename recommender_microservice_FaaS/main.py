@@ -8,6 +8,9 @@ def get_recommendation(request):
         # request_args = request.args
         # movie_name = request_args['movie_name']
 
+
+        #return jsonify({'testing': 'recommender'}), 200
+
         request_movie = request.args.get('movie_name')
         request_overviews = request.args.get('overviews')
         request_titles = request.args.get('title')
@@ -17,5 +20,5 @@ def get_recommendation(request):
                                            movie_titles=request_titles)
 
     else:
-        return abort(405)
+        return abort(404)
 
