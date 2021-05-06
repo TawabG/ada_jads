@@ -45,7 +45,7 @@
       "output_encoding": "json",
       "backend": [
         {
-          "url_pattern": "/product/get_recommendation_data",
+          "url_pattern": "/product/get_recommender_data",
           "encoding": "json",
           "method": "GET",
           "host": [
