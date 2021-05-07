@@ -38,6 +38,7 @@
       "endpoint": "/recommender",
       "method": "POST",
       "output_encoding": "json",
+      "timeout": "1000s",
       "backend": [
         {
           "url_pattern": "/get_recommendation",
