@@ -12,7 +12,7 @@
         "user_id",
         "customer_email"
       ],
-      "timeout": "200000ms",
+      "timeout": "1000s",
       "backend": [
         {
           "url_pattern": "/accounts/get_account",
@@ -35,30 +35,17 @@
       ]
     },
     {
-      "endpoint": "/recommender/{movie_name}",
-      "method": "GET",
-      "extra_config": {
-        "github.com/devopsfaith/krakend/proxy": {
-          "sequential": true
-        }
-      },
+      "endpoint": "/recommender",
+      "method": "POST",
       "output_encoding": "json",
+      "timeout": "1000s",
       "backend": [
         {
-          "url_pattern": "/product/get_recommendation_data",
+          "url_pattern": "/get_recommendation",
           "encoding": "json",
-          "method": "GET",
+          "method": "POST",
           "host": [
-            "http://product_microservice_ct:5002"
-          ],
-          "disable_host_sanitize": false
-        },
-        {
-          "url_pattern": "get_recommendation/?movie_name={movie_name}&overviews={resp0_overviews}&title={resp0_titles}",
-          "encoding": "json",
-          "method": "GET",
-          "host": [
-            "https://us-central1-psychotechnogcp.cloudfunctions.net/"
+            "https://us-central1-adv-data-architectures.cloudfunctions.net/"
           ],
           "disable_host_sanitize": false
         }

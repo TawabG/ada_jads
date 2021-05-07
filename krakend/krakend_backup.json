@@ -1,7 +1,7 @@
 {
   "version": 2,
   "output_encoding": "json",
-  "name": "AggregateAccountCart",
+  "name": "createCart",
   "port": 8081,
   "endpoints": [
     {
@@ -33,23 +33,49 @@
           "disable_host_sanitize": false
         }
       ]
+    },
+    {
+      "endpoint": "/recommender/{movie_name}",
+      "method": "GET",
+      "querystring_params": [
+        "movie_name"
+      ],
+      "extra_config": {
+        "github.com/devopsfaith/krakend/proxy": {
+          "sequential": true
+        }
+      },
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/products/get_recommender_data",
+          "encoding": "json",
+          "method": "GET",
+          "is_collection": true,
+          "host": [
+            "http://product_microservice_ct:5000"
+          ],
+          "disable_host_sanitize": false
+        },
+        {
+          "url_pattern": "/get_recommendation",
+          "encoding": "json",
+          "method": "POST",
+          "extra_config": {
+            "github.com/devopsfaith/krakend-cel": [
+              {
+                "check_expr": "req_params.Movie_name.matches('test')"
+              }
+            ]
+          },
+          "host": [
+            "https://us-central1-adv-data-architectures.cloudfunctions.net/"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
     }
   ]
 }
 
-//    {
-//      "url_pattern": "/cart/add_to_cart",
-//      "method": "POST",
-//      "output_encoding": "json",
-//      "backend": [
-//        {
-//          "url_pattern": "/cart/add_to_cart",
-//          "encoding": "json",
-//          "method": "POST",
-//          "host": [
-//            "http://cart_microservice_ct:5000/"
-//          ],
-//          "disable_host_sanitize": false
-//        }
-//      ]
-//    },
+
