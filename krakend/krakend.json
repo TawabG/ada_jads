@@ -12,7 +12,7 @@
         "user_id",
         "customer_email"
       ],
-      "timeout": "200000ms",
+      "timeout": "100s",
       "backend": [
         {
           "url_pattern": "/accounts/get_account",

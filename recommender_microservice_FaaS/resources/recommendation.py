@@ -26,16 +26,18 @@ class SimpleRecommender:
         movie_df['overviews'] = overviews
 
         tfidf = TfidfVectorizer(stop_words='english')
-        movie_df['overview'].fillna('', inplace=True)
-        tfidf_matrix = tfidf.fit_transform(movie_df['overview'])
+        movie_df['overviews'].fillna('', inplace=True)
+        tfidf_matrix = tfidf.fit_transform(movie_df['overviews'])
         cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
-        indices = pd.Series(movie_df.index, index=movie_df['title']).drop_duplicates()
+        indices = pd.Series(movie_df.index, index=movie_df['titles']).drop_duplicates()
         idx = indices[movie_name]
 
         sim_scores = list(enumerate(cosine_sim[idx]))
-        sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+        #sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
         sim_scores = sim_scores[1:11]
         movie_indices = [i[0] for i in sim_scores]
 
-        return movie_df['title'].iloc[movie_indices].to_json(), 200
+        return movie_df['titles'].iloc[movie_indices].to_json(), 200
+
+        # Allocate 1GiB in Google Cloud functions!!
 
